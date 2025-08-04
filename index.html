@@ -1,174 +1,104 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Produtos e Agrotóxicos | Loja Oficial</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-    }
-
-    header {
-      background-color: #343a40;
-      color: white;
-      padding: 80px 20px 40px;
-      text-align: center;
-      position: relative;
-    }
-
-    .nav-container {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      left: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-list {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    .nav-list a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: color 0.3s;
-    }
-
-    .nav-list a:hover {
-      color: #4caf50;
-    }
-
-    .user-controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .login-btn {
-      background-color: #4caf50;
-      color: white;
-      padding: 8px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .login-btn:hover {
-      background-color: #45a049;
-    }
-
-    #user-pic {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-
-    #user-name {
-      color: white;
-      font-size: 1rem;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
-
-    .btn-cta {
-      background-color: #4CAF50;
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-size: 1.2rem;
-    }
-
-    .btn-cta:hover {
-      background-color: #45a049;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<rel="stylesheet">
+<title>Flashcard</title>
 </head>
 <body>
+    <main>
+<section id="container">
 
-  <header>
-    <nav class="nav-container">
-      <ul class="nav-list">
-        <li><a href="#sementes">Sementes</a></li>
-        <li><a href="#agrotoxicos">Agrotóxicos</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-
-      <div class="user-controls" id="auth-section">
-        <button class="login-btn" onclick="login()">Login</button>
-      </div>
-    </nav>
-
-    <div class="hero">
-      <h1>Do Campo para a Cidade, Vendendo em Conjunto</h1>
-      <p>Seja bem-vindo à nossa loja, onde qualidade e confiança se encontram.</p>
-      <a href="#produtos" class="btn-cta">Explore nossos produtos</a>
+<article class="cartao">
+<div class="cartao-conteudo">
+<h3>Astrologia</h3>
+<div class="cartao-conteudo-pergunta">
+    O que é uma super nova?
     </div>
-  </header>
+    <div class="cartao-conteudo-resposta">
+        </p>Uma explosão estelar poderosa e luminosa que ocorre no final da vida de uma estrela.</p>
+    </div>
+</div>
+</article>
 
-  <!-- Conteúdo restante aqui -->
 
-  <script>
-    // 🔐 Substitua pelas suas configurações do Firebase
-    const firebaseConfig = {
-      apiKey: "SUA_API_KEY",
-      authDomain: "SEU_DOMINIO.firebaseapp.com",
-      projectId: "SEU_PROJETO_ID",
-      appId: "SEU_APP_ID"
-    };
+<article class="cartao">
+<div class="cartao-conteudo">
+    <h3>Astrologia</h3>
+    <div class="cartao-conteudo-pergunta">
+       <p> O que é um buraco negro?<p>
+        <div>
+        <div class="cartao-conteudo-resposta">
+            </p>Região do espaço com uma gravidade tão intensa que nada pode escapar</p>
+        </div>
+</div>
+    </article>
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
 
-    function login() {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider).then((result) => {
-        const user = result.user;
-        document.getElementById('auth-section').innerHTML = `
-          <span id="user-name">${user.displayName}</span>
-          <img id="user-pic" src="${user.photoURL}" alt="Foto de Perfil"/>
-          <button class="login-btn" onclick="logout()">Sair</button>
-        `;
-      }).catch((error) => {
-        alert('Erro ao fazer login: ' + error.message);
-      });
-    }
+    <article class="cartao">
+    <div class="cartao-conteudo">
+        <h3>Astrologia</h3>
+        <div class="cartao-conteudo-pergunta">
+            </p>Qual o menor planeta do sistema solar?</p>
+            </div>
+            <div class="cartao-conteudo-resposta">
+                </p>Mercúrio</p>
+            </div>
+        </div>
+    </article>
 
-    function logout() {
-      auth.signOut().then(() => {
-        document.getElementById('auth-section').innerHTML = `
-          <button class="login-btn" onclick="login()">Login</button>
-        `;
-      });
-    }
-  </script>
 
+        <article class="cartao">
+        <div class="cartao-conteudo">
+            <h3>Música</h3>
+            <div class="cartao-conteudo-pergunta">
+                </p>Qual o primeiro album lançado pela cantora Melanie Martinez?</p>
+                </div>
+                <div class="cartao-conteudo-resposta">
+                    </p>Dollhouse</p>
+                </div>
+            </div>
+        </article>
+
+
+            <article class="cartao">
+            <div class="cartao-conteudo">
+                <h3>Música</h3>
+                <div class="cartao-conteudo-pergunta">
+                    <p>Qual a primeira música solo do cantor Travis Scott?</p>
+                    </div>
+                    <div class="cartao-conteudo-resposta">
+                        </p>Lights (Love Sick)</p>
+                    </div>
+                </div>
+            </article>
+
+
+                <article class="cartao">
+                <div class="cartao-conteudo">
+                    <h3>Esportes</h3>
+                    <div class="cartao-conteudo-pergunta">
+                        </p>O vôlei feminino brasileiro possui quantas medalhas olímpicas?</p>
+                        </div>
+                        <div class="cartao-conteudo-resposta">
+                        <p>6.</p>
+                        </div>
+                    </div>
+                </article>
+
+
+</article>
+</section>
+    </main>
+    <footer>
+        <p>Projeto sem fins lucrativos</p>
+    </footer>
+    <script src="perguntas.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
